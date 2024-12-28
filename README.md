@@ -7,14 +7,14 @@ Database Schema:
 
 Three main tables: countries, cases, and vaccinations.
 Each table provides unique data points about countries, daily COVID-19 cases, and vaccination efforts.
-Advanced SQL Techniques:
 
+Advanced SQL Techniques:
 Data cleaning and handling of missing/duplicate records.
 Aggregation of total cases, deaths, recoveries, and vaccination rates.
 Joins across multiple tables to uncover relationships and trends.
 Creation of views for reusable summary reports.
-Insights Derived:
 
+Insights Derived:
 Vaccination and case rates by country and continent.
 Identification of countries with the highest vaccination rates.
 Trend analysis of COVID-19 cases and vaccination progress.
