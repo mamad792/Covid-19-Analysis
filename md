@@ -1,4 +1,4 @@
-### COVID-19 Data Analysis Project
+COVID-19 Data Analysis Project
 Overview
 This project analyzes the global impact of COVID-19 using SQL. 
 It demonstrates advanced SQL skills, including data cleaning, aggregation, and complex joins, to derive meaningful insights from pandemic-related data.
@@ -14,4 +14,4 @@ Creation of views for reusable summary reports.
 Insights Derived:
 Vaccination and case rates by country and continent.
 Identification of countries with the highest vaccination rates.
-Trend analysis of COVID-19 cases and vaccination progress. ### 
+Trend analysis of COVID-19 cases and vaccination progress. 
