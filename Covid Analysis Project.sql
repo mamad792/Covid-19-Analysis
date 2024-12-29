@@ -1,3 +1,41 @@
+/* ======================= TABLES ========================*/
+
+CREATE TABLE countries (
+    country_id INT PRIMARY KEY,
+    country_name VARCHAR(50) NOT NULL,
+    continent VARCHAR(30) NOT NULL,
+    population BIGINT NOT NULL
+)
+
+CREATE TABLE cases (
+    case_id INT PRIMARY KEY,
+    country_id INT NOT NULL REFERENCES Countries(country_id),
+    date_reported DATE NOT NULL,
+    new_cases INT DEFAULT 0,
+    new_deaths INT DEFAULT 0,
+    new_recoveries INT DEFAULT 0
+)
+
+
+CREATE TABLE vaccinations (
+    vaccine_id INT PRIMARY KEY,
+    country_id INT NOT NULL REFERENCES Countries(country_id),
+    date_administered DATE NOT NULL,
+    doses_administered INT DEFAULT 0,
+    fully_vaccinated INT DEFAULT 0
+)
+
+
+/*======================== END TABLES ======================*/
+
+/*==================== POPULATING TABLES ======================*/
+
+-- Tables were imported from 3 csv files. 
+
+/*============================== END POPULATING TABLES ==============================*/
+
+/* =================== QUERY QUESTIONS =================================== */
+
 -- List all countries along with their population and continent.
 SELECT country_name, continent, population FROM countries
 
@@ -79,12 +117,6 @@ SELECT continent, SUM(new_cases) as total_cases, RANK() OVER(ORDER BY SUM(new_ca
 FROM cases INNER JOIN countries ON cases.country_id = countries.country_id 
 GROUP BY continent
 
-
-
-
-
-
-
 -- Build a view summarizing total cases, deaths, recoveries, and vaccinations for each country.
 CREATE VIEW country_covid_summary AS (SELECT country_name, 
 SUM(new_cases) AS total_cases,
@@ -100,6 +132,27 @@ GROUP BY country_name
 
 SELECT * FROM country_covid_summary
 
+-- Create a stored procedure to calculate the case fatality rate for any country dynamically.
+
+CREATE OR REPLACE PROCEDURE pr_calculate_fatality_rate(
+														pr_country_name VARCHAR(50),
+														OUT s_fatality_rate FLOAT
+														)
+LANGUAGE plpgsql 
+AS $$
+DECLARE
+s_fatality_rate FLOAT;
+BEGIN 
+
+	SELECT ROUND((SUM(new_deaths)::NUMERIC / population) * 100,4) FROM countries INNER JOIN cases ON countries.country_id = cases.country_id 
+	INTO s_fatality_rate
+	WHERE country_name = pr_country_name
+	GROUP BY population;
+
+END 
+$$;
+
+CALL pr_calculate_fatality_rate('Ukraine', NULL);
 
 
 
