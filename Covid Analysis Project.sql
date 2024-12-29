@@ -134,10 +134,7 @@ SELECT * FROM country_covid_summary
 
 -- Create a stored procedure to calculate the case fatality rate for any country dynamically.
 
-CREATE OR REPLACE PROCEDURE pr_calculate_fatality_rate(
-														pr_country_name VARCHAR(50),
-														OUT s_fatality_rate FLOAT
-														)
+CREATE OR REPLACE PROCEDURE pr_calculate_fatality_rate(pr_country_name VARCHAR(50), OUT s_fatality_rate FLOAT)
 LANGUAGE plpgsql 
 AS $$
 DECLARE
