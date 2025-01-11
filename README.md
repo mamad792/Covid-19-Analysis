@@ -1,6 +1,8 @@
 COVID-19 Data Analysis Project
 Author: Momodou Diop
 
+DAY: 11/27/1997
+
 Overview
 
 This project analyzes the global impact of COVID-19 using SQL. It demonstrates advanced SQL skills, including data cleaning, aggregation, and complex joins, to derive meaningful insights from pandemic-related data.
