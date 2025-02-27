@@ -1,7 +1,4 @@
 COVID-19 Data Analysis Project
-Author: Momodou Diop
-
-DAY: 11/27/1997
 
 Overview
 
